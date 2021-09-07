@@ -1,0 +1,35 @@
+From 06a86d3fa3cf77394be22ca0dc83032b016d744a Mon Sep 17 00:00:00 2001
+From: bananafunction <terathree2@web.de>
+Date: Tue, 7 Sep 2021 09:08:44 +0200
+Subject: [PATCH] fajita: use fingerprint of Pixel device
+
+This change allows Google Play Store certification, as the current
+chosen fingerprint needs to fit to current Android Security Patch
+Level (SPL).
+
+As a consequence, when updating SPL, an update of this fingerprint
+is mandatory to stay certified.
+
+Signed-off-by: bananafunction <terathree2@web.de>
+---
+ lineage_fajita.mk | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/lineage_fajita.mk b/lineage_fajita.mk
+index 59974d9..2cec946 100644
+--- a/lineage_fajita.mk
++++ b/lineage_fajita.mk
+@@ -35,6 +35,8 @@ PRODUCT_GMS_CLIENTID_BASE := android-oneplus
+ PRODUCT_BUILD_PROP_OVERRIDES += \
+     PRODUCT_DEVICE=OnePlus6T \
+     PRODUCT_NAME=OnePlus6T \
+-    PRIVATE_BUILD_DESC="OnePlus6T-user 9 PKQ1.180716.001 1812260627 release-keys"
++    PRIVATE_BUILD_DESC="redfin-user 11 RQ3A.210805.001.A1 7474174 release-keys" \
++    BUILD_NUMBER=7474174
+ 
+-BUILD_FINGERPRINT := OnePlus/OnePlus6T/OnePlus6T:9/PKQ1.180716.001/1812260627:user/release-keys
++# Pixel 5 August fingerprint
++BUILD_FINGERPRINT := google/redfin/redfin:11/RQ3A.210805.001.A1/7474174:user/release-keys
+-- 
+2.25.1
+
