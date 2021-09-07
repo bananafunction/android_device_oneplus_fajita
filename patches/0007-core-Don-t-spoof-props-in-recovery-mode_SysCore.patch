@@ -1,0 +1,30 @@
+From e7243f0a78344f7c28b7fa2542fc9b215b9c83f2 Mon Sep 17 00:00:00 2001
+From: Jarl-Penguin <jarlpenguin@outlook.com>
+Date: Wed, 16 Jun 2021 11:28:46 +0000
+Subject: [PATCH] core: Don't spoof props in recovery mode
+
+Signed-off-by: Jarl-Penguin <jarlpenguin@outlook.com>
+Change-Id: Ib6d3808c3b8f3e0cffab685a24d3cdd436b0fe9b
+Signed-off-by: Anushek Prasal <anushekprasal@gmail.com>
+---
+ init/property_service.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/init/property_service.cpp b/init/property_service.cpp
+index 89944ca80..6e0091320 100644
+--- a/init/property_service.cpp
++++ b/init/property_service.cpp
+@@ -1029,7 +1029,9 @@ void PropertyLoadBootDefaults() {
+     }
+ 
+     // Workaround SafetyNet
+-    workaround_snet_properties();
++    if (!IsRecoveryMode()) {
++        workaround_snet_properties();
++    }
+ }
+ 
+ bool LoadPropertyInfoFromFile(const std::string& filename,
+-- 
+2.25.1
+
