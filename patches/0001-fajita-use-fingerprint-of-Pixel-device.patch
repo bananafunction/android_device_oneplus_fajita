@@ -24,12 +24,12 @@ index 59974d9..2cec946 100644
      PRODUCT_DEVICE=OnePlus6T \
      PRODUCT_NAME=OnePlus6T \
 -    PRIVATE_BUILD_DESC="OnePlus6T-user 9 PKQ1.180716.001 1812260627 release-keys"
-+    PRIVATE_BUILD_DESC="redfin-user 12 SP2A.220305.012 8177914 release-keys" \
-+    BUILD_NUMBER=8177914
++    PRIVATE_BUILD_DESC="redfin-user 12 SP2A.220405.003 8210211 release-keys" \
++    BUILD_NUMBER=8210211
  
 -BUILD_FINGERPRINT := OnePlus/OnePlus6T/OnePlus6T:9/PKQ1.180716.001/1812260627:user/release-keys
-+# Pixel 5 March fingerprint
-+BUILD_FINGERPRINT := google/redfin/redfin:12/SP2A.220305.012/8177914:user/release-keys
++# Pixel 5 April fingerprint
++BUILD_FINGERPRINT := google/redfin/redfin:12/SP2A.220405.003/8210211:user/release-keys
 -- 
 2.25.1
 
