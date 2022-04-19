@@ -12,6 +12,7 @@ git am "$PATCH_ROOT/0002-keystore-Report-rate-limited-instead-of-not-implemen_Sy
 cd "$ANDROID_BUILD_TOP/frameworks/base"
 git am "$PATCH_ROOT/0001-KeyStore-Block-key-attestation-for-Google-Play-Servi_FraBas.patch"
 git am "$PATCH_ROOT/0002-KeyStore-Report-rate-limited-instead-of-not-implemen_FraBas.patch"
+git am "$PATCH_ROOT/Change_NTP_End_point.patch"
 
 cd "$ANDROID_BUILD_TOP/system/core"
 git am "$PATCH_ROOT/0001-init-Weaken-property-override-security-for-the-init-_SysCore.patch"
@@ -21,6 +22,9 @@ git am "$PATCH_ROOT/0004-init-Weaken-property-override-security-only-when-spo_Sy
 git am "$PATCH_ROOT/0005-init-Only-set-safetynet-props-if-not-eng-build_SysCore.patch"
 git am "$PATCH_ROOT/0006-core-Add-more-props-for-snet-spoofing_SysCore.patch"
 git am "$PATCH_ROOT/0007-core-Don-t-spoof-props-in-recovery-mode_SysCore.patch"
+
+cd "$ANDROID_BUILD_TOP/packages/modules/DnsResolver"
+git am "$PATCH_ROOT/DNS-change-DNS-address-to-QUAD9.patch"
 
 cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
 git am "$PATCH_ROOT/0001-fajita-use-fingerprint-of-Pixel-device.patch"

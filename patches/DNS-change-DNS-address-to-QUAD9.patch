@@ -1,0 +1,41 @@
+From e8f4ddee485bd90ebf360af2d007e5a587b6e437 Mon Sep 17 00:00:00 2001
+From: bananafunction <terathree2@web.de>
+Date: Tue, 19 Apr 2022 11:15:51 +0200
+Subject: [PATCH] DNS: change DNS address to QUAD9
+
+Signed-off-by: bananafunction <terathree2@web.de>
+Change-Id: I8c5414814004d7d56747f03f7960f0e4c38b0bb1
+---
+ getaddrinfo.cpp                   | 2 +-
+ tests/dnsresolver_binder_test.cpp | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/getaddrinfo.cpp b/getaddrinfo.cpp
+index 071f6ac..1f16c73 100644
+--- a/getaddrinfo.cpp
++++ b/getaddrinfo.cpp
+@@ -253,7 +253,7 @@ static int have_ipv6(unsigned mark, uid_t uid) {
+ static int have_ipv4(unsigned mark, uid_t uid) {
+     static const struct sockaddr_in sin_test = {
+             .sin_family = AF_INET,
+-            .sin_addr.s_addr = __constant_htonl(0x08080808L)  // 8.8.8.8
++            .sin_addr.s_addr = __constant_htonl(0x09090909L)  // 9.9.9.9
+     };
+     sockaddr_union addr = {.sin = sin_test};
+     return _find_src_addr(&addr.sa, NULL, mark, uid) == 1;
+diff --git a/tests/dnsresolver_binder_test.cpp b/tests/dnsresolver_binder_test.cpp
+index 6fb73f3..b1cdce0 100644
+--- a/tests/dnsresolver_binder_test.cpp
++++ b/tests/dnsresolver_binder_test.cpp
+@@ -193,7 +193,7 @@ TEST_F(DnsResolverBinderTest, RegisterEventListener_onDnsEvent) {
+ 
+ // TODO: Need to test more than one server cases.
+ TEST_F(DnsResolverBinderTest, SetResolverConfiguration_Tls) {
+-    const std::vector<std::string> LOCALLY_ASSIGNED_DNS{"8.8.8.8", "2001:4860:4860::8888"};
++    const std::vector<std::string> LOCALLY_ASSIGNED_DNS{"9.9.9.9", "2620:fe::9"};
+     static const std::vector<std::string> valid_v4_addr = {"192.0.2.1"};
+     static const std::vector<std::string> valid_v6_addr = {"2001:db8::2"};
+     static const std::vector<std::string> invalid_v4_addr = {"192.0.*.5"};
+-- 
+2.25.1
+
