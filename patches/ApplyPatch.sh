@@ -31,10 +31,12 @@ if [[ $# -eq 0 ]]
     cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
     git am "$PATCH_ROOT/0001-fajita-use-fingerprint-of-Pixel-device.patch"
 
+    cd "$ANDROID_BUILD_TOP/device/oneplus/sdm845-common"
+    git am "$PATCH_ROOT/0001-sdm845-common-packages-Include-prebuilt-OnePlus-Came.patch"
+
     echo "Done."
     exit 1
 else
-    then
     cd "$ANDROID_BUILD_TOP/system/security"
     git reset --hard HEAD~2
     
@@ -49,5 +51,9 @@ else
     
     cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
     git reset --hard HEAD~1
+
+    cd "$ANDROID_BUILD_TOP/device/oneplus/sdm845-common"
+    git reset --hard HEAD~1
+
     exit 1
 fi
