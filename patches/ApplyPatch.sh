@@ -19,6 +19,10 @@ if [[ $# -eq 0 ]]
     cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
     git am "$PATCH_ROOT/0001-fajita-use-fingerprint-of-Pixel-device.patch"
 
+    cd "$ANDROID_BUILD_TOP/packages/apps/Updater"
+    git am "$PATCH_ROOT/0001-Define-new-server-URL.patch"
+    git am "$PATCH_ROOT/0002-Define-new-changelog-URL.patch"
+
     echo "Done."
     exit 1
 else
@@ -28,5 +32,9 @@ else
     
     cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
     git reset --hard HEAD~1
+
+    cd "$ANDROID_BUILD_TOP/packages/apps/Updater"
+    git reset --hard HEAD~2
+
     exit 1
 fi

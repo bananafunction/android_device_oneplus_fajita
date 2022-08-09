@@ -1,0 +1,26 @@
+From 4a65ad6366fbe6d400793ab1ed74a5a950f773a9 Mon Sep 17 00:00:00 2001
+From: bananafunction <terathree2@web.de>
+Date: Wed, 26 May 2021 16:21:47 +0200
+Subject: [PATCH 1/2] Define new server URL
+
+Signed-off-by: bananafunction <terathree2@web.de>
+---
+ res/values/strings.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index 1d62059..5096920 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -30,7 +30,7 @@
+         Optional placeholders replaced at runtime:
+           {device} - Device name
+     -->
+-    <string name="updater_server_url" translatable="false">https://raw.githubusercontent.com/crdroidandroid/android_vendor_crDroidOTA/11.0/{device}.json</string>
++    <string name="updater_server_url" translatable="false">https://terathree2.spdns.de/CRDroid/devices/crdroid-7/{device}/{device}.json</string>
+ 
+     <string name="verification_failed_notification">Verification failed</string>
+     <string name="verifying_download_notification">Verifying update</string>
+-- 
+2.25.1
+

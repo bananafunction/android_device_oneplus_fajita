@@ -1,0 +1,41 @@
+From 5286725f5416954032cf34f56e3128e25cd09c71 Mon Sep 17 00:00:00 2001
+From: bananafunction <terathree2@web.de>
+Date: Wed, 26 May 2021 16:44:44 +0200
+Subject: [PATCH 2/2] Define new changelog URL
+
+Signed-off-by: bananafunction <terathree2@web.de>
+---
+ res/values/strings.xml                  | 2 +-
+ src/com/crdroid/updater/misc/Utils.java | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index 5096920..5fbd43a 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -73,7 +73,7 @@
+     <string name="menu_copy_url">Copy URL</string>
+     <string name="menu_export_update">Export update</string>
+     <string name="menu_show_changelog">Show changelog</string>
+-    <string name="menu_changelog_url" translatable="false">https://crdroid.net/<xliff:g id="device_name">%1$s</xliff:g>/7#changelog</string>
++    <string name="menu_changelog_url" translatable="false">https://terathree2.spdns.de/CRDroid/devices/crdroid-7/{device}/{device}_changelog.html</string>
+     <string name="menu_ab_perf_mode">Prioritize update process</string>
+     <string name="menu_update_recovery">Update recovery</string>
+     <string name="toast_forced_update_recovery">It is impossible to disable Lineage Recovery updates on this device.</string>
+diff --git a/src/com/crdroid/updater/misc/Utils.java b/src/com/crdroid/updater/misc/Utils.java
+index 46a5de6..63135b0 100644
+--- a/src/com/crdroid/updater/misc/Utils.java
++++ b/src/com/crdroid/updater/misc/Utils.java
+@@ -177,7 +177,8 @@ public class Utils {
+     public static String getChangelogURL(Context context) {
+         String device = SystemProperties.get(Constants.PROP_NEXT_DEVICE,
+                 SystemProperties.get(Constants.PROP_DEVICE));
+-        return context.getString(R.string.menu_changelog_url, device);
++        String ChangelogURL = context.getString(R.string.menu_changelog_url, device);
++        return ChangelogURL.replace("{device}", device);
+     }
+ 
+     public static void triggerUpdate(Context context, String downloadId) {
+-- 
+2.25.1
+
