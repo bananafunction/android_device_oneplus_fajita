@@ -23,7 +23,5 @@ Copyright 2018 - The LineageOS Project.
 
 ## Hola amiguitos
 
-This is my attempt to fix up and add a little crDroid customization flavor back into the device tree for OnePlus 6T (fajita).
+This is "Terminator-J"s attempt to fix up and add a little crDroid customization flavor back into the device tree for OnePlus 6T (fajita).
 Moved a few things to common that don't make sense to be separate, and separated a few things that don't make sense to be commonized.
-
-Rebased on the official lineage-18.1 branch of the LineageOS device tree as of February 2022.
