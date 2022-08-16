@@ -1,0 +1,23 @@
+From 64935ccc8490cd4b2a63a91b16a3188f729af28c Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Tue, 16 Jul 2019 14:49:29 -0400
+Subject: [PATCH] enable kernel mitigations for link races
+
+---
+ rootdir/init.rc | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/rootdir/init.rc b/rootdir/init.rc
+index 8a385595e7a..fb939e9475b 100644
+--- a/rootdir/init.rc
++++ b/rootdir/init.rc
+@@ -325,6 +325,9 @@ on init
+     write /proc/sys/kernel/hung_task_timeout_secs 0
+     write /proc/cpu/alignment 4
+ 
++    write /proc/sys/fs/protected_hardlinks 1
++    write /proc/sys/fs/protected_symlinks 1
++
+     # scheduler tunables
+     # Disable auto-scaling of scheduler tunables with hotplug. The tunables
+     # will vary across devices in unpredictable ways if allowed to scale with

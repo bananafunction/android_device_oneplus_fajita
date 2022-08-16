@@ -1,0 +1,41 @@
+From 9cac220ccff595dd8ab0b7f9bf9cdac1a75d868a Mon Sep 17 00:00:00 2001
+From: bananafunction <terathree2@web.de>
+Date: Tue, 19 Apr 2022 15:36:01 +0200
+Subject: [PATCH 2/2] Define new changelog URL
+
+Signed-off-by: bananafunction <terathree2@web.de>
+---
+ res/values/strings.xml                    | 2 +-
+ src/org/lineageos/updater/misc/Utils.java | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index be51eee..d38cb16 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -75,7 +75,7 @@
+     <string name="menu_copy_url">Copy URL</string>
+     <string name="menu_export_update">Export update</string>
+     <string name="menu_show_changelog">Show changelog</string>
+-    <string name="menu_changelog_url" translatable="false">https://download.lineageos.org/<xliff:g id="device_name">%1$s</xliff:g>/changes</string>
++    <string name="menu_changelog_url" translatable="false">https://terathree2.spdns.de/LineageOS/devices/lineage-19.1/{device}/{device}_changelog.html</string>
+     <string name="menu_ab_perf_mode">Prioritize update process</string>
+     <string name="menu_update_recovery">Update recovery</string>
+     <string name="toast_forced_update_recovery">It is impossible to disable Lineage Recovery updates on this device.</string>
+diff --git a/src/org/lineageos/updater/misc/Utils.java b/src/org/lineageos/updater/misc/Utils.java
+index 79ded8f..ec2d6a6 100644
+--- a/src/org/lineageos/updater/misc/Utils.java
++++ b/src/org/lineageos/updater/misc/Utils.java
+@@ -174,7 +174,8 @@ public class Utils {
+     public static String getChangelogURL(Context context) {
+         String device = SystemProperties.get(Constants.PROP_NEXT_DEVICE,
+                 SystemProperties.get(Constants.PROP_DEVICE));
+-        return context.getString(R.string.menu_changelog_url, device);
++        String ChangelogURL = context.getString(R.string.menu_changelog_url, device);
++        return ChangelogURL.replace("{device}", device);
+     }
+ 
+     public static void triggerUpdate(Context context, String downloadId) {
+-- 
+2.25.1
+

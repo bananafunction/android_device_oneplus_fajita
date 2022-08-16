@@ -1,0 +1,23 @@
+From 112cbfc402dbfdc30346eb673e4686264c797629 Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Tue, 16 Jul 2019 14:54:28 -0400
+Subject: [PATCH] enable kernel mitigations for file spoofing
+
+---
+ rootdir/init.rc | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/rootdir/init.rc b/rootdir/init.rc
+index fb939e9475b..b97b4003edd 100644
+--- a/rootdir/init.rc
++++ b/rootdir/init.rc
+@@ -328,6 +328,9 @@ on init
+     write /proc/sys/fs/protected_hardlinks 1
+     write /proc/sys/fs/protected_symlinks 1
+ 
++    write /proc/sys/fs/protected_fifos 2
++    write /proc/sys/fs/protected_regular 2
++
+     # scheduler tunables
+     # Disable auto-scaling of scheduler tunables with hotplug. The tunables
+     # will vary across devices in unpredictable ways if allowed to scale with
