@@ -20,15 +20,31 @@ Copyright 2018 - The LineageOS Project.
 
 ![OnePlus 6T](https://cdn2.gsmarena.com/vv/pics/oneplus/oneplus-6t-thunder-purple-1.jpg "OnePlus 6T")
 
-## Temporary build instructions
+## My (bananafunction) build instructions
 
 ```
-# Compiling
-$ m[ake|ka] bootimage systemimage
-
-# Installing
-$ fastboot --disable-verity --disable-verification flash vbmeta stock_vbmeta.img
-$ fastboot flash boot boot.img
-$ fastboot flash system system.img
-$ fastboot -w reboot
+# Preparing instructions
+$ please see official LineageOS instructions for OnePlus 6T (https://wiki.lineageos.org/devices/fajita/build)
+# Download my repositories by creating roomservice.xml in (starting in LineageOS build root)
+$ cd .repo
+$ mkdir local_manifests
+$ cd local_manifests
+$ touch roomservice.xml
+# Fill roomservice.xml with following lines
+$<?xml version="1.0" encoding="UTF-8"?>
+$<manifest>
+$  <project name="bananafunction/android_device_oneplus_fajita" path="device/oneplus/fajita" remote="github" revision="lineage-19.1" />
+$  <project name="bananafunction/android_device_oneplus_sdm845-common" path="device/oneplus/sdm845-common" remote="github" revision="lineage-19.1" />
+$  <project name="bananafunction/android_hardware_oneplus" path="hardware/oneplus" remote="github" revision="lineage-19.1" />
+$  <project name="bananafunction/android_kernel_oneplus_sdm845" path="kernel/oneplus/sdm845" remote="github" revision="lineage-19.1" />
+$</manifest>
+# Save file and go back to LineageOS build root
+$ croot
+# Compiling (in LineageOS build root)
+$ source build/envsetup.sh
+$ breakfast fajita
+# Optional: Apply additional patches
+$ ./device/oneplus/fajita/patches/ApplyPatch.sh
+# Start building
+$ brunch fajita
 ```
