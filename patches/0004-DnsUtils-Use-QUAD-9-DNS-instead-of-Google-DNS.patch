@@ -1,0 +1,29 @@
+From 31b5164823e723d9610b3fefb54637539cdc4a98 Mon Sep 17 00:00:00 2001
+From: Chirayu Desai <chirayudesai1@gmail.com>
+Date: Sat, 5 Dec 2020 03:11:01 +0530
+Subject: [PATCH] DnsUtils: Use QUAD 9 DNS instead of Google DNS
+
+Change-Id: Ide51c086d2570aa5ecf28868e13f4f1672a4ff8a
+(cherry picked from commit e1d2f34fb3614eb903a6538969494f7d43e52dbd)
+Signed-off-by: chiru2000 <chiranth@m.ms.evolution-x.org>
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+[minor adaptions to use QUAD 9 instead of CLOUDFLARE]
+Signed-off-by: bananafunction <terathree2@web.de>
+---
+ framework/src/android/net/util/DnsUtils.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/framework/src/android/net/util/DnsUtils.java b/framework/src/android/net/util/DnsUtils.java
+index 3fe245edb9..3bf7eeaf90 100644
+--- a/framework/src/android/net/util/DnsUtils.java
++++ b/framework/src/android/net/util/DnsUtils.java
+@@ -342,7 +342,7 @@ private static int compareIpv6PrefixMatchLen(@NonNull InetAddress srcAddr,
+      */
+     public static boolean haveIpv4(@Nullable Network network) {
+         final SocketAddress addrIpv4 =
+-                new InetSocketAddress(InetAddresses.parseNumericAddress("8.8.8.8"), 0);
++                new InetSocketAddress(InetAddresses.parseNumericAddress("9.9.9.9"), 0);
+         return checkConnectivity(network, AF_INET, addrIpv4);
+     }
+ 
+

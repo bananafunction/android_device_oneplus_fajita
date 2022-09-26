@@ -1,0 +1,99 @@
+From c4cf42b8c30246cdbc3eeec6b557a5df651cfcde Mon Sep 17 00:00:00 2001
+From: Chirayu Desai <chirayudesai1@gmail.com>
+Date: Mon, 24 Jun 2019 21:27:35 +0530
+Subject: [PATCH] Add QUAD 9 DNS as a private DNS provider
+
+TODO: Add tests
+
+Also includes:
+commit d82a7a0585671903ba18cd1d8fab25d9275c2a25
+Author: Oliver Scott <olivercscott@gmail.com>
+Date:   Fri Jan 29 10:57:26 2021 -0500
+
+    Fix Cloudflare private DNS provider
+
+    Change-Id: I5932d8d7e82621220eb119a212ccecf15e284421
+    (cherry picked from commit 24abf646a0df5e00285d1b698adec03eb897388f)
+
+Change-Id: I7e8a320d47e7c5ddbcb9acfaf23032ae92d5d70d
+(cherry picked from commit 96ce93f7bf7233008591d22a0d24a6d7cd0a94ff)
+Signed-off-by: chiru2000 <chiranth@m.ms.evolution-x.org>
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+[minor adaptions to use QUAD 9 instead of CLOUDFLARE]
+Signed-off-by: bananafunction <terathree2@web.de>
+---
+ .../android/net/ConnectivitySettingsManager.java  | 15 +++++++++++++++
+ .../android/server/connectivity/DnsManager.java   |  6 ++++++
+ 2 files changed, 21 insertions(+)
+
+diff --git a/framework/src/android/net/ConnectivitySettingsManager.java b/framework/src/android/net/ConnectivitySettingsManager.java
+index 9c8d08fb1a..9a8f7a09e4 100644
+--- a/framework/src/android/net/ConnectivitySettingsManager.java
++++ b/framework/src/android/net/ConnectivitySettingsManager.java
+@@ -351,6 +351,12 @@ private ConnectivitySettingsManager() {}
+      */
+     public static final int PRIVATE_DNS_MODE_OFF = ConnectivitySettingsUtils.PRIVATE_DNS_MODE_OFF;
+ 
++    /**
++     * @hide
++     */
++    public static final int PRIVATE_DNS_MODE_QUAD9 =
++            ConnectivitySettingsUtils.PRIVATE_DNS_MODE_QUAD9;
++
+     /**
+      * One of the private DNS modes that indicates the private DNS mode is automatic, which
+      * will try to use the current DNS as private DNS.
+@@ -366,10 +372,18 @@ private ConnectivitySettingsManager() {}
+     public static final int PRIVATE_DNS_MODE_PROVIDER_HOSTNAME =
+             ConnectivitySettingsUtils.PRIVATE_DNS_MODE_PROVIDER_HOSTNAME;
+ 
++    /**
++     * @hide
++     * Alternative: https://dns.quad9.net/dns-query
++     */
++    public static final String PRIVATE_DNS_SPECIFIER_QUAD9 = "nine.nine.nine.nine";
++
++
+     /** @hide */
+     @Retention(RetentionPolicy.SOURCE)
+     @IntDef(value = {
+             PRIVATE_DNS_MODE_OFF,
++            PRIVATE_DNS_MODE_QUAD9,
+             PRIVATE_DNS_MODE_OPPORTUNISTIC,
+             PRIVATE_DNS_MODE_PROVIDER_HOSTNAME,
+     })
+@@ -798,6 +812,7 @@ public static String getPrivateDnsDefaultMode(@NonNull Context context) {
+     public static void setPrivateDnsDefaultMode(@NonNull Context context,
+             @NonNull @PrivateDnsMode int mode) {
+         if (!(mode == PRIVATE_DNS_MODE_OFF
++                || mode == PRIVATE_DNS_MODE_QUAD9
+                 || mode == PRIVATE_DNS_MODE_OPPORTUNISTIC
+                 || mode == PRIVATE_DNS_MODE_PROVIDER_HOSTNAME)) {
+             throw new IllegalArgumentException("Invalid private dns mode");
+diff --git a/service/src/com/android/server/connectivity/DnsManager.java b/service/src/com/android/server/connectivity/DnsManager.java
+index 1493cae79a..7229d6c5e6 100644
+--- a/service/src/com/android/server/connectivity/DnsManager.java
++++ b/service/src/com/android/server/connectivity/DnsManager.java
+@@ -23,8 +23,10 @@
+ import static android.net.ConnectivitySettingsManager.PRIVATE_DNS_DEFAULT_MODE;
+ import static android.net.ConnectivitySettingsManager.PRIVATE_DNS_MODE;
+ import static android.net.ConnectivitySettingsManager.PRIVATE_DNS_MODE_OFF;
++import static android.net.ConnectivitySettingsManager.PRIVATE_DNS_MODE_QUAD9;
+ import static android.net.ConnectivitySettingsManager.PRIVATE_DNS_MODE_PROVIDER_HOSTNAME;
+ import static android.net.ConnectivitySettingsManager.PRIVATE_DNS_SPECIFIER;
++import static android.net.ConnectivitySettingsManager.PRIVATE_DNS_SPECIFIER_QUAD9;
+ import static android.net.resolv.aidl.IDnsResolverUnsolicitedEventListener.VALIDATION_RESULT_FAILURE;
+ import static android.net.resolv.aidl.IDnsResolverUnsolicitedEventListener.VALIDATION_RESULT_SUCCESS;
+ 
+@@ -141,6 +143,10 @@ public static PrivateDnsConfig getPrivateDnsConfig(Context context) {
+             return new PrivateDnsConfig(specifier, null);
+         }
+ 
++        if (PRIVATE_DNS_MODE_QUAD9 == mode) {
++            return new PrivateDnsConfig(PRIVATE_DNS_SPECIFIER_QUAD9, null);
++        }
++
+         return new PrivateDnsConfig(useTls);
+     }
+ 
+

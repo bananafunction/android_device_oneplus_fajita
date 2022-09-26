@@ -23,6 +23,12 @@ if [[ $# -eq 0 ]]
     git am "$PATCH_ROOT/0001-Define-new-server-URL_Updater.patch"
     git am "$PATCH_ROOT/0002-Define-new-changelog-URL_Updater.patch"
 
+    cd "$ANDROID_BUILD_TOP/packages/modules/Connectivity"
+#    git am "$PATCH_ROOT/0001-Add-QUAD-9-DNS-as-a-private-DNS-provider.patch"
+    git am "$PATCH_ROOT/0002-Tethering-Use-QUAD-9-DNS-instead-of-Google-DNS.patch"
+    git am "$PATCH_ROOT/0003-NetworkDiagnostics-Use-QUAD-9-DNS-instead-of-Google-DNS.patch"
+    git am "$PATCH_ROOT/0004-DnsUtils-Use-QUAD-9-DNS-instead-of-Google-DNS.patch"
+
     cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
     git am "$PATCH_ROOT/0001-fajita-update-fingerprint-patch-to-match-SPL.patch"
 
@@ -37,6 +43,9 @@ else
 
     cd "$ANDROID_BUILD_TOP/packages/apps/Updater"
     git reset --hard HEAD~2
+
+    cd "$ANDROID_BUILD_TOP/packages/modules/Connectivity"
+    git reset --hard HEAD~3
 
     cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
     git reset --hard HEAD~1

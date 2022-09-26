@@ -1,0 +1,32 @@
+From c8318511cc8af119a2ef02028faf3eba8ace38c3 Mon Sep 17 00:00:00 2001
+From: Chirayu Desai <chirayudesai1@gmail.com>
+Date: Sat, 5 Dec 2020 03:06:52 +0530
+Subject: [PATCH] NetworkDiagnostics: Use QUAD 9 DNS instead of Google DNS
+
+Change-Id: I1300cff1609ebe87a6bec58b65cc724920a091bc
+(cherry picked from commit 8649aebad397dc3544348f88fac51fc8e4ac7347)
+Signed-off-by: chiru2000 <chiranth@m.ms.evolution-x.org>
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+[minor adaptions to use QUAD 9 instead of CLOUDFLARE]
+Signed-off-by: bananafunction <terathree2@web.de>
+---
+ .../com/android/server/connectivity/NetworkDiagnostics.java   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/service/src/com/android/server/connectivity/NetworkDiagnostics.java b/service/src/com/android/server/connectivity/NetworkDiagnostics.java
+index 2e51be39bf..51d753f3a0 100644
+--- a/service/src/com/android/server/connectivity/NetworkDiagnostics.java
++++ b/service/src/com/android/server/connectivity/NetworkDiagnostics.java
+@@ -97,9 +97,9 @@
+ public class NetworkDiagnostics {
+     private static final String TAG = "NetworkDiagnostics";
+ 
+-    private static final InetAddress TEST_DNS4 = InetAddresses.parseNumericAddress("8.8.8.8");
++    private static final InetAddress TEST_DNS4 = InetAddresses.parseNumericAddress("9.9.9.9");
+     private static final InetAddress TEST_DNS6 = InetAddresses.parseNumericAddress(
+-            "2001:4860:4860::8888");
++            "2620:fe::fe");
+ 
+     // For brevity elsewhere.
+     private static final long now() {
+
