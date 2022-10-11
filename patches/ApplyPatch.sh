@@ -32,6 +32,11 @@ if [[ $# -eq 0 ]]
     cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
     git am "$PATCH_ROOT/0001-fajita-update-fingerprint-patch-to-match-SPL.patch"
 
+    cd "$ANDROID_BUILD_TOP/packages/apps/Settings"
+    git am "$PATCH_ROOT/0001-Settings-Show-full-proc-version-information.patch"
+    git am "$PATCH_ROOT/0002-Settings-Change-kernel-preference-behavior.patch"
+    git am "$PATCH_ROOT/0003-Make-kernel-version-clickable.patch"
+
     echo "Done."
     exit 1
 else
@@ -49,6 +54,9 @@ else
 
     cd "$ANDROID_BUILD_TOP/device/oneplus/fajita"
     git reset --hard HEAD~1
+
+    cd "$ANDROID_BUILD_TOP/packages/apps/Settings"
+    git reset --hard HEAD~3
 
     exit 1
 fi

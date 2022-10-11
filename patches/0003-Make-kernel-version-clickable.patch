@@ -1,0 +1,26 @@
+From cd33b48bb5eb2ece1607e5428d6a89dd6aa0840a Mon Sep 17 00:00:00 2001
+From: SagarMakhar <sagarmakhar@gmail.com>
+Date: Sun, 8 Nov 2020 14:11:28 +0000
+Subject: [PATCH] Make kernel version clickable
+
+- so that it expands and shows full kernel version
+
+Change-Id: Ic08ec7a1db62a521e434cac5188aad2d35a4825d
+Signed-off-by: SagarMakhar <sagarmakhar@gmail.com>
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+---
+ res/xml/firmware_version.xml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/res/xml/firmware_version.xml b/res/xml/firmware_version.xml
+index 399843e9f72..f2fcdacdb30 100644
+--- a/res/xml/firmware_version.xml
++++ b/res/xml/firmware_version.xml
+@@ -83,7 +83,6 @@
+         android:key="kernel_version"
+         android:title="@string/kernel_version"
+         android:summary="@string/summary_placeholder"
+-        android:selectable="false"
+         settings:enableCopying="true"
+         settings:controller="com.android.settings.deviceinfo.firmwareversion.KernelVersionPreferenceController"/>
+ 
