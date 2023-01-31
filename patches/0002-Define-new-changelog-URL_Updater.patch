@@ -18,7 +18,7 @@ index be51eee..d38cb16 100644
      <string name="menu_export_update">Export update</string>
      <string name="menu_show_changelog">Show changelog</string>
 -    <string name="menu_changelog_url" translatable="false">https://download.lineageos.org/<xliff:g id="device_name">%1$s</xliff:g>/changes</string>
-+    <string name="menu_changelog_url" translatable="false">https://terathree2.spdns.de/LineageOS/devices/lineage-19.1/{device}/{device}_changelog.html</string>
++    <string name="menu_changelog_url" translatable="false">https://terathree2.spdns.de/LineageOS/devices/lineage-20/{device}/{device}_changelog.html</string>
      <string name="menu_ab_perf_mode">Prioritize update process</string>
      <string name="menu_update_recovery">Update recovery</string>
      <string name="toast_forced_update_recovery">It is impossible to disable Lineage Recovery updates on this device.</string>

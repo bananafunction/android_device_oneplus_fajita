@@ -17,7 +17,7 @@ index bfb2627..be51eee 100644
            {incr} - Incremental version
      -->
 -    <string name="updater_server_url" translatable="false">https://download.lineageos.org/api/v1/{device}/{type}/{incr}</string>
-+    <string name="updater_server_url" translatable="false">https://terathree2.spdns.de/LineageOS/devices/lineage-19.1/{device}/{device}.json</string>
++    <string name="updater_server_url" translatable="false">https://terathree2.spdns.de/LineageOS/devices/lineage-20/{device}/{device}.json</string>
  
      <string name="verification_failed_notification">Verification failed</string>
      <string name="verifying_download_notification">Verifying update</string>
