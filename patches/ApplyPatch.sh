@@ -11,6 +11,7 @@ if [[ $# -eq 0 ]]
     git am "$PATCH_ROOT/0001-Spoof-build-fingerprint-for-Google-Play-Services_FraBase.patch"
     git am "$PATCH_ROOT/0002-keystore-Block-key-attestation-for-SafetyNet_FraBase.patch"
     git am "$PATCH_ROOT/0003-Limit-SafetyNet-workarounds-to-unstable-GMS-process_FraBase.patch"
+    git am "$PATCH_ROOT/0004-gmscompat-Make-CTS-Play-Integrity-pass-again.patch"
 
     cd "$ANDROID_BUILD_TOP/system/core"
     git am "$PATCH_ROOT/0001-tighten-up-mount-permissions_SysCore.patch"
@@ -35,7 +36,7 @@ if [[ $# -eq 0 ]]
     exit 1
 else
     cd "$ANDROID_BUILD_TOP/frameworks/base"
-    git reset --hard HEAD~3
+    git reset --hard HEAD~4
 
     cd "$ANDROID_BUILD_TOP/system/core"
     git reset --hard HEAD~5
