@@ -32,6 +32,9 @@ if [[ $# -eq 0 ]]
     git am "$PATCH_ROOT/0002-Settings-Change-kernel-preference-behavior.patch"
     git am "$PATCH_ROOT/0003-Make-kernel-version-clickable.patch"
 
+    cd "$ANDROID_BUILD_TOP/build/core"
+    git am "$PATCH_ROOT/0001-Make-build-ID-simple.patch"
+
     echo "Done."
     exit 1
 else
@@ -49,6 +52,9 @@ else
 
     cd "$ANDROID_BUILD_TOP/packages/apps/Settings"
     git reset --hard HEAD~3
+
+    cd "$ANDROID_BUILD_TOP/build/core"
+    git reset --hard HEAD~1
 
     exit 1
 fi
