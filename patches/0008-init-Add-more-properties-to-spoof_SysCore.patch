@@ -1,0 +1,39 @@
+From 313b89dc30ca8652839d8f1da1c9f3cd0b6590a8 Mon Sep 17 00:00:00 2001
+From: spezi77 <spezi7713@gmx.net>
+Date: Fri, 15 Jan 2021 20:22:02 +0100
+Subject: [PATCH 3/5] init: Add more properties to spoof.
+
+Change-Id: If652345fb2e3558a1e99e827c70eb2d674bcd8f4
+Signed-off-by: neobuddy89 <neobuddy89@gmail.com>
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+---
+ init/property_service.cpp | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/init/property_service.cpp b/init/property_service.cpp
+index e9c3e7b97..36316e90e 100644
+--- a/init/property_service.cpp
++++ b/init/property_service.cpp
+@@ -1321,7 +1321,18 @@ static void SetSafetyNetProps() {
+     InitPropertySet("ro.boot.flash.locked", "1");
+     InitPropertySet("ro.boot.verifiedbootstate", "green");
+     InitPropertySet("ro.boot.veritymode", "enforcing");
+-    InitPropertySet("ro.boot.vbmeta.device_state", "locked");
++    InitPropertySet("ro.boot.veritymode", "enforcing");
++    InitPropertySet("ro.boot.warranty_bit", "0");
++    InitPropertySet("ro.warranty_bit", "0");
++    InitPropertySet("ro.debuggable", "0");
++    InitPropertySet("ro.secure", "1");
++    InitPropertySet("ro.build.type", "user");
++    InitPropertySet("ro.build.tags", "release-keys");
++    InitPropertySet("ro.vendor.boot.warranty_bit", "0");
++    InitPropertySet("ro.vendor.warranty_bit", "0");
++    InitPropertySet("vendor.boot.vbmeta.device_state", "locked");
++    InitPropertySet("vendor.boot.verifiedbootstate", "green");
++
+ }
+ 
+ void PropertyInit() {
+-- 
+2.34.1
+

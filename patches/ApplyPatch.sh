@@ -19,6 +19,11 @@ if [[ $# -eq 0 ]]
     git am "$PATCH_ROOT/0003-enable-kernel-mitigations-for-file-spoofing_SysCore.patch"
     git am "$PATCH_ROOT/0004-libfs_avb-Disable-dm-verity-when-AVB-is-permissive_SysCore.patch"
     git am "$PATCH_ROOT/0005-init-Report-valid-verified-boot-for-SafetyNet-checks_SysCore.patch"
+    git am "$PATCH_ROOT/0006-init-Don-t-spoof-SafetyNet-properties-in-recovery-mo_SysCore.patch"
+    git am "$PATCH_ROOT/0007-init-Weaken-property-override-security-for-the-init_SysCore.patch"
+    git am "$PATCH_ROOT/0008-init-Add-more-properties-to-spoof_SysCore.patch"
+    git am "$PATCH_ROOT/0009-init-Do-not-set-safety-net-props-for-ENG-builds_SysCore.patch"
+    git am "$PATCH_ROOT/0010-init-Update-properties-for-snet-spoof_SysCore.patch"
 
     cd "$ANDROID_BUILD_TOP/packages/apps/Updater"
     git am "$PATCH_ROOT/0001-Define-new-server-URL_Updater.patch"
@@ -42,7 +47,7 @@ else
     git reset --hard HEAD~4
 
     cd "$ANDROID_BUILD_TOP/system/core"
-    git reset --hard HEAD~5
+    git reset --hard HEAD~10
 
     cd "$ANDROID_BUILD_TOP/packages/apps/Updater"
     git reset --hard HEAD~2
