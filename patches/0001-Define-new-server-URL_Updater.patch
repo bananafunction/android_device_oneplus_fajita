@@ -5,13 +5,13 @@ Subject: [PATCH 1/2] Define new server URL
 
 Signed-off-by: bananafunction <terathree2@web.de>
 ---
- res/values/strings.xml | 2 +-
+ app/src/main/res/values/strings.xml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/res/values/strings.xml b/res/values/strings.xml
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
 index bfb2627..be51eee 100644
---- a/res/values/strings.xml
-+++ b/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml
++++ b/app/src/main/res/values/strings.xml
 @@ -32,7 +32,7 @@
            {type} - Build type
            {incr} - Incremental version
