@@ -40,6 +40,7 @@ if [[ $# -eq 0 ]]
 
     cd "$ANDROID_BUILD_TOP/build/core"
     git am "$PATCH_ROOT/0001-Make-build-ID-simple.patch"
+#    git am "$PATCH_ROOT/0002-system-core-update-BUILD_ID.patch"
 
     echo "Done."
     exit 1

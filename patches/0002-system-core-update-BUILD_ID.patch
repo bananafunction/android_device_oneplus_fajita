@@ -1,0 +1,24 @@
+From f6549c73278c49a9fc57451a3cb6d2b7c08a1cf8 Mon Sep 17 00:00:00 2001
+From: bananafunction <terathree2@web.de>
+Date: Tue, 19 Sep 2023 12:39:19 +0200
+Subject: [PATCH] system: core: update BUILD_ID
+
+Change-Id: I6a304670eaf314af7a1e23d45c0c016061186dd0
+Signed-off-by: bananafunction <terathree2@web.de>
+---
+ core/build_id.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/build_id.mk b/core/build_id.mk
+index e70e58b0c..2ce71e30f 100644
+--- a/core/build_id.mk
++++ b/core/build_id.mk
+@@ -18,4 +18,4 @@
+ # (like "CRB01").  It must be a single word, and is
+ # capitalized by convention.
+ 
+-BUILD_ID=TQ3A.230805.001
++BUILD_ID=TQ3A.230805.001-2309
+-- 
+2.34.1
+
