@@ -1,0 +1,60 @@
+From 9a168776cdf9c44ac1fe406c8698a58723f042f2 Mon Sep 17 00:00:00 2001
+From: Tim Josten <timjosten@gmail.com>
+Date: Tue, 24 Oct 2023 21:55:02 +0700
+Subject: [PATCH] PixelPropUtils: Fix GMS drain triggered by an outdated ROM
+ build date
+
+If the build date exceeds a month, GMS, thinking the device is Pixel, attempts a system update, which unexpectedly fails. This goes into an endless cycle which drains battery very quickly and generates a lot of heat. Let's fix it by spoofing the build date to something always fresh.
+
+[bananafunction: added function setPropValue()]
+---
+ .../internal/gmscompat/AttestationHooks.java  | 26 ++++++++++++++++---
+ 1 file changed, 22 insertions(+), 4 deletions(-)
+
+diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+index 2c665dbf45ab..183c31eb92ad 100644
+--- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
++++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+@@ -54,6 +54,22 @@ public final class AttestationHooks {
+         }
+     }
+ 
++    private static void setPropValue(String key, Object value) {
++        try {
++            // Unlock
++            Field field = Build.class.getDeclaredField(key);
++            field.setAccessible(true);
++
++            // Edit
++            field.set(null, value);
++
++            // Lock
++            field.setAccessible(false);
++        } catch (NoSuchFieldException | IllegalAccessException e) {
++            Log.e(TAG, "Failed to set prop " + key, e);
++        }
++    }
++
+     private static void setVersionField(String key, Integer value) {
+         try {
+             // Unlock
+@@ -87,10 +103,12 @@ public final class AttestationHooks {
+             return;
+         }
+ 
+-        if (packageName.equals(PACKAGE_GMS) &&
+-            processName.equals(PROCESS_UNSTABLE)) {
+-            sIsGms = true;
+-            spoofBuildGms();
++        if (packageName.equals(PACKAGE_GMS)) {
++            setPropValue("TIME", System.currentTimeMillis());
++            if (processName.equals(PROCESS_UNSTABLE)) {
++                sIsGms = true;
++                spoofBuildGms();
++            }
+         }
+ 
+         if (packageName.equals(PACKAGE_FINSKY)) {
+-- 
+2.34.1
+
