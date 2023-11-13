@@ -1,0 +1,41 @@
+From 5659a9a02f990703316c5daacc026c7036b6020d Mon Sep 17 00:00:00 2001
+From: Pranav Vashi <neobuddy89@gmail.com>
+Date: Thu, 9 Nov 2023 07:33:23 +0530
+Subject: [PATCH] PixelPropsUtils: Change spoof to Zenfone 4 to fix safetynet
+
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+---
+ .../internal/gmscompat/AttestationHooks.java    | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+index 6bc604638ae5..4a85532eab94 100644
+--- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
++++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+@@ -87,11 +87,18 @@ public final class AttestationHooks {
+     }
+ 
+     private static void spoofBuildGms() {
+-        // Alter model name to avoid hardware attestation enforcement
+-        setBuildField("FINGERPRINT", "google/marlin/marlin:7.1.2/NJH47F/4146041:user/release-keys");
+-        setBuildField("PRODUCT", "marlin");
+-        setBuildField("DEVICE", "marlin");
+-        setBuildField("MODEL", "Pixel XL");
++        // Alter model name and fingerprint to Asus Zenfone 4 to avoid hardware attestation enforcement
++        setBuildField("PRODUCT", "WW_Phone");
++        setBuildField("PRODUCT_FOR_ATTESTATION", "WW_Phone");
++        setBuildField("DEVICE", "ASUS_X00HD_4");
++        setBuildField("DEVICE_FOR_ATTESTATION", "ASUS_X00HD_4");
++        setBuildField("MANUFACTURER", "Asus");
++        setBuildField("MANUFACTURER_FOR_ATTESTATION", "Asus");
++        setBuildField("BRAND", "Asus");
++        setBuildField("BRAND_FOR_ATTESTATION", "Asus");
++        setBuildField("MODEL", "ASUS_X00HD");
++        setBuildField("MODEL_FOR_ATTESTATION", "ASUS_X00HD");
++        setBuildField("FINGERPRINT", "asus/WW_Phone/ASUS_X00HD_4:7.1.1/NMF26F/14.2016.1801.372-20180119:user/release-keys");
+         setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.N_MR1);
+     }
+ 
+-- 
+2.34.1
+

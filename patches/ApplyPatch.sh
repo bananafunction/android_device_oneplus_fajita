@@ -14,6 +14,7 @@ if [[ $# -eq 0 ]]
     git am "$PATCH_ROOT/0004-gmscompat-Make-CTS-Play-Integrity-pass-again.patch"
     git am "$PATCH_ROOT/0005-gmscompat-Get-package-name-from-context-instead-of-a.patch"
     git am "$PATCH_ROOT/0006-PixelPropUtils-Fix-GMS-drain-triggered-by-an-outdated-ROM.patch"
+    git am "$PATCH_ROOT/0007-PixelPropsUtils-Change-spoof-to-Zenfone-4-to-fix-safetynet.patch"
 
     cd "$ANDROID_BUILD_TOP/system/core"
     git am "$PATCH_ROOT/0001-tighten-up-mount-permissions_SysCore.patch"
@@ -47,7 +48,7 @@ if [[ $# -eq 0 ]]
     exit 1
 else
     cd "$ANDROID_BUILD_TOP/frameworks/base"
-    git reset --hard HEAD~6
+    git reset --hard HEAD~7
 
     cd "$ANDROID_BUILD_TOP/system/core"
     git reset --hard HEAD~10
