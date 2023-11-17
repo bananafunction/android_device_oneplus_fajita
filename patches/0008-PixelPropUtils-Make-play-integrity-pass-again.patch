@@ -1,0 +1,68 @@
+From a0f187fd52278e8810ad6b5d3fa5b12d266afdef Mon Sep 17 00:00:00 2001
+From: saikiran2001 <bjsaikiran@gmail.com>
+Date: Thu, 16 Nov 2023 16:53:04 +0000
+Subject: [PATCH] PixelPropUtils: Make play integrity pass again
+
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+[bananafunction: added setVersionFieldString()]
+---
+ .../internal/gmscompat/AttestationHooks.java  | 39 ++++++++++++-------
+ 1 file changed, 25 insertions(+), 14 deletions(-)
+
+diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+index ce8d19b07d88..aa058115c942 100644
+--- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
++++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+@@ -82,24 +82,35 @@ public final class AttestationHooks {
+             // Lock
+             field.setAccessible(false);
+         } catch (NoSuchFieldException | IllegalAccessException e) {
+-            Log.e(TAG, "Failed to spoof Build." + key, e);
++            Log.e(TAG, "Failed to set prop." + key, e);
++        }
++    }
++
++    private static void setVersionFieldString(String key, String value) {
++        try {
++            // Unlock
++            Field field = Build.VERSION.class.getDeclaredField(key);
++            field.setAccessible(true);
++
++            // Edit
++            field.set(null, value);
++
++            // Lock
++            field.setAccessible(false);
++        } catch (NoSuchFieldException | IllegalAccessException e) {
++            Log.e(TAG, "Failed to set prop " + key, e);
+         }
+     }
+ 
+     private static void spoofBuildGms() {
+-        // Alter model name and fingerprint to Asus Zenfone 4 to avoid hardware attestation enforcement
+-        setBuildField("PRODUCT", "WW_Phone");
+-        setBuildField("PRODUCT_FOR_ATTESTATION", "WW_Phone");
+-        setBuildField("DEVICE", "ASUS_X00HD_4");
+-        setBuildField("DEVICE_FOR_ATTESTATION", "ASUS_X00HD_4");
+-        setBuildField("MANUFACTURER", "Asus");
+-        setBuildField("MANUFACTURER_FOR_ATTESTATION", "Asus");
+-        setBuildField("BRAND", "Asus");
+-        setBuildField("BRAND_FOR_ATTESTATION", "Asus");
+-        setBuildField("MODEL", "ASUS_X00HD");
+-        setBuildField("MODEL_FOR_ATTESTATION", "ASUS_X00HD");
+-        setBuildField("FINGERPRINT", "asus/WW_Phone/ASUS_X00HD_4:7.1.1/NMF26F/14.2016.1801.372-20180119:user/release-keys");
+-        setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.N_MR1);
++        // Alter build parameters to Nexus 5X for avoiding hardware attestation enforcement
++        setBuildField("PRODUCT", "bullhead");
++        setBuildField("DEVICE", "bullhead");
++        setBuildField("ID", "OPR6.170623.013");
++        setBuildField("MODEL", "Nexus 5X");
++        setBuildField("FINGERPRINT", "google/bullhead/bullhead:8.0.0/OPR6.170623.013/4283548:user/release-keys");
++        setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.N);
++        setVersionFieldString("SECURITY_PATCH", "2017-08-05");
+     }
+ 
+     public static void initApplicationBeforeOnCreate(Context context) {
+-- 
+2.34.1
+
